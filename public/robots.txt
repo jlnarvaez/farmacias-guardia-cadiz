@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jlnarvaez.github.io/farmacias-guardia-cadiz/sitemap.xml
