@@ -128,32 +128,32 @@ function MunicipalityCard({ entry, now }: { entry: MunicipalityAvailability; now
         </span>
       </div>
       {openNow.length > 0 ? (
-        <div className="mt-2 flex items-center gap-2">
-          <span className="shrink-0 rounded-full bg-open-soft px-2 py-0.5 text-xs font-semibold text-open">
+        <div className="mt-2">
+          <span className="rounded-full bg-open-soft px-2 py-0.5 text-xs font-semibold text-open">
             Abierta ahora
           </span>
-          <span className="truncate text-sm font-medium text-ink">
+          <p className="mt-1.5 break-words text-sm text-ink-soft">
             {openNow[0].pharmacyName}
-          </span>
+          </p>
         </div>
       ) : onCallNow.length > 0 ? (
-        <div className="mt-2 flex items-center gap-2">
-          <span className="shrink-0 rounded-full bg-phone-soft px-2 py-0.5 text-xs font-semibold text-phone">
+        <div className="mt-2">
+          <span className="rounded-full bg-phone-soft px-2 py-0.5 text-xs font-semibold text-phone">
             Localizada
           </span>
-          <span className="truncate text-sm font-medium text-ink">
+          <p className="mt-1.5 break-words text-sm text-ink-soft">
             {onCallNow[0].pharmacyName}
-          </span>
+          </p>
         </div>
       ) : null}
       {openNow.length === 0 && onCallNow.length === 0 && nextOpening ? (
-        <div className="mt-2 flex items-center gap-2">
-          <span className="shrink-0 rounded-full bg-soon-soft px-2 py-0.5 text-xs font-semibold text-soon">
+        <div className="mt-2">
+          <span className="rounded-full bg-soon-soft px-2 py-0.5 text-xs font-semibold text-soon">
             Abre en {formatTimeUntil(nextOpening.shift.interval.start, now)}
           </span>
-          <span className="truncate text-sm font-medium text-ink">
+          <p className="mt-1.5 break-words text-sm text-ink-soft">
             {nextOpening.pharmacy.pharmacyName}
-          </span>
+          </p>
         </div>
       ) : null}
     </Link>
