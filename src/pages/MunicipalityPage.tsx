@@ -167,15 +167,15 @@ function EmptyOpenNow({ hasUpcoming }: { hasUpcoming: boolean }) {
 }
 
 /**
- * Small chip marking a time that falls on another calendar day: "mañana" or
- * "del día mié". Renders nothing for today.
+ * Small chip marking a time that falls on another calendar day: e.g.
+ * "mañana 11 de oct" or "del día mié". Renders nothing for today.
  */
 function DayMarker(props: { target: DateTime; now: DateTime }) {
   const label = nextDayLabel(props.target, props.now)
   if (!label) return null
   return (
     <span className="rounded-full bg-closed-soft px-2 py-0.5 text-[11px] font-semibold text-ink-soft">
-      {label === 'mañana' ? 'mañana' : `del día ${label}`}
+      {label.startsWith('mañana') ? label : `del día ${label}`}
     </span>
   )
 }
@@ -247,8 +247,14 @@ function PharmacyCard(props: { pharmacy: Pharmacy; now: DateTime; onCall?: boole
         `${pharmacy.address} ${pharmacy.municipalityName}`,
       )}`
 
+  // Physically-open pharmacies get a prominent style (accent border, ring
+  // and shadow); phone-only "Localizada" cards stay visually subdued.
+  const cardTone = onCall
+    ? 'border-line-soft bg-surface'
+    : 'border-rausch/40 bg-surface shadow-[0_2px_12px_rgba(0,0,0,0.07)] ring-1 ring-rausch/20'
+
   return (
-    <article className="rounded-card border border-line-soft bg-surface p-4">
+    <article className={`rounded-card border p-4 ${cardTone}`}>
       <div className="flex items-start justify-between gap-3">
         <h3 className="font-medium text-ink">{pharmacy.pharmacyName}</h3>
         <span

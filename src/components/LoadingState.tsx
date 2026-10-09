@@ -1,7 +1,6 @@
 /**
  * Full-screen loading placeholder shown while guard data loads for the first
- * time: a prominent pulsing cross + pill logo, a large spinner, a clear
- * message and a subtle progress bar.
+ * time: a prominent pulsing cross + pill logo and a clear message.
  */
 
 export function LoadingState() {
@@ -21,26 +20,12 @@ export function LoadingState() {
         </span>
       </div>
 
-      {/* Large spinner */}
-      <div
-        aria-hidden
-        className="mt-8 h-10 w-10 animate-spin rounded-full border-[3px] border-line border-t-rausch motion-reduce:animate-none"
-      />
-
-      <p className="mt-5 text-base font-semibold text-ink">
+      <p className="mt-6 text-base font-semibold text-ink">
         Cargando farmacias de guardia…
       </p>
       <p className="mt-1 text-sm text-ink-soft">
         Consultando los turnos de hoy en cofcadiz.es
       </p>
-
-      {/* Indeterminate progress bar */}
-      <div
-        aria-hidden
-        className="mt-6 h-1 w-48 overflow-hidden rounded-full bg-line-soft"
-      >
-        <div className="h-full w-1/3 animate-progress-slide rounded-full bg-rausch motion-reduce:animate-pulse" />
-      </div>
 
       <p className="sr-only" role="status">
         Cargando farmacias de guardia, por favor espera.

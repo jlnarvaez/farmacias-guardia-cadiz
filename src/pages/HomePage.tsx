@@ -110,9 +110,9 @@ function SearchInput(props: { value: string; onChange: (value: string) => void }
 
 function MunicipalityCard({ entry, now }: { entry: MunicipalityAvailability; now: DateTime }) {
   const { municipality, openNow, onCallNow, upcoming } = entry
-  // Only visible entries count: open/on-call now plus those opening within
-  // the next 12 hours. Closed pharmacies are excluded from listings.
-  const visibleCount = openNow.length + onCallNow.length + upcoming.length
+  // The badge counts only pharmacies physically open ("Abierta ahora");
+  // phone-only "Localizada" ones are not open to the public and stay out.
+  const openCount = openNow.length
 
   const nextOpening = upcoming[0]
 
@@ -124,7 +124,7 @@ function MunicipalityCard({ entry, now }: { entry: MunicipalityAvailability; now
       <div className="flex items-center justify-between gap-3">
         <span className="font-medium text-ink">{municipality.name}</span>
         <span className="shrink-0 rounded-full bg-closed-soft px-2.5 py-1 text-xs font-medium text-ink-soft">
-          {visibleCount} {visibleCount === 1 ? 'farmacia' : 'farmacias'}
+          {openCount} {openCount === 1 ? 'farmacia' : 'farmacias'}
         </span>
       </div>
       {openNow.length > 0 ? (

@@ -58,14 +58,17 @@ export function formatClock(time: DateTime): string {
 
 /**
  * Marker for a close time that does not fall on the current Madrid calendar
- * day: "mañana" for the next day, otherwise the short Spanish weekday
- * ("mié"). Returns null when the instant is on the same day as `now`.
+ * day: "mañana d de mmm" (day number + short month, e.g. "mañana 11 de oct")
+ * for the next day, otherwise the short Spanish weekday ("mié"). Returns
+ * null when the instant is on the same day as `now`.
  */
 export function nextDayLabel(target: DateTime, now: DateTime): string | null {
   const targetDay = target.startOf('day')
   const nowDay = now.startOf('day')
   if (targetDay.equals(nowDay)) return null
   const diffDays = Math.round(targetDay.diff(nowDay, 'days').days)
-  if (diffDays === 1) return 'mañana'
+  if (diffDays === 1) {
+    return `mañana ${target.day} de ${target.setLocale('es').toFormat('LLL')}`
+  }
   return target.setLocale('es').toFormat('ccc')
 }

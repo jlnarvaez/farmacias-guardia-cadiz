@@ -201,7 +201,8 @@ describe('nextDayLabel', () => {
   it('marks next-day and same-weekday closes, null for today', () => {
     const now = at('2026-09-17', '12:00')
     expect(nextDayLabel(at('2026-09-17', '22:00'), now)).toBeNull()
-    expect(nextDayLabel(at('2026-09-18', '09:30'), now)).toBe('mañana')
+    // Next-day closes include the day number and short month.
+    expect(nextDayLabel(at('2026-09-18', '09:30'), now)).toBe('mañana 18 de sept')
     // 2026-09-19 is a Saturday.
     expect(nextDayLabel(at('2026-09-19', '14:00'), now)).toBe('sáb')
   })
